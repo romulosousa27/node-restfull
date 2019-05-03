@@ -1,15 +1,12 @@
 const http =  require("http");
 const express = require("express");
 const route = require("./routes/route");
+const sequelize = require("./database/database");
+const status = require("http-status");
 
-/** instanciando o Express */
+
+/** Express init */
 const app = express();
-
-const host = '127.0.0.1';
-const port = 3000;
-
-/** port express */
-app.set("port", port);
 
 // garantindo o retornas da api, sejam em formato Json
 app.use(express.json());
@@ -17,14 +14,22 @@ app.use(express.json());
 // prefixo das rotas
 app.use('/api', route);
 
-/** middlewares */
-app.use( (request, response, next) => {
-    response.status(404).send();
+/** middlewares errors */
+app.use( (request, response, next) => { 
+    response.status(status.NOT_FOUND).send();
 });
 
-const server =  http.createServer(app);
+app.use( (error, response, next) => {
+    response.status(status.INTERNAL_SERVER_ERROR).json({ error });
+});
 
+sequelize.sync({ force:true }).then((result) => {
+    // variavel de ambiente
+    const port =  process.env.PORT || 3000;
 
-server.listen(port, host, () => {
-    console.log(`Servidor em execução: http://${host}:${port}/`);
+    app.set("port", port);
+
+    const server =  http.createServer(app);
+    server.listen(port);
+
 });

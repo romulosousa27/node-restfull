@@ -1,4 +1,5 @@
 const Spoiler =  require("../model/spoiler");
+const status = require("http-status");
 
 /** 
  *  Middleware 
@@ -11,10 +12,10 @@ exports.findSpoiler = (req, res, next) => {
     Spoiler.findById(id).then(spoiler => {
         
         if (spoiler) {
-            res.send(spoiler);
+            res.status(status.OK).send(spoiler);
         } 
         else {
-            res.status(404).send();
+            res.status(status.NOT_FOUND).send();
         }
     }).catch(error => next(error));
 };
@@ -30,7 +31,7 @@ exports.allSpoiler = (req, res, next) => {
     let page = parseInt(req.query.page || 0);
 
     if (!Number.isInteger(limit) || !Number.isInteger(page)) {
-        res.status(400).send();
+        res.status(status.BAD_REQUEST).send();
     }
 
     const ITEMS_PER_PAGE = 10;
@@ -60,7 +61,7 @@ exports.createSpoiler = (req, res, next) => {
         description: description,
 
     }).then( ()=>{ 
-        res.status(201).send();
+        res.status(status.CREATED).send();
     }).catch((error) => next(error))
 };
 
@@ -95,7 +96,7 @@ exports.updateSpoiler = (req, res, next) => {
 
         } 
         else {
-            res.status(404).send();
+            res.status(status.NOT_FOUND).send();
         }
     }).catch(error => next(error));
 };
@@ -121,7 +122,7 @@ exports.updateSpoiler = (req, res, next) => {
             }).catch(error => next(error));
          } 
          else {
-            res.status(404).send();
+            res.status(status.NOT_FOUND).send();
          }
      }).catch(error => next(error));
  }

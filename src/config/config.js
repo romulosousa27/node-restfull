@@ -5,9 +5,9 @@ module.exports = {
     
     development: {
         database: {
-            host: 'localhost',
-            port: '3306',
-            name: 'spoiler',
+            host: '192.168.1.7',
+            port: '5432',
+            name: 'NodeSpoilerAPI',
             dialect: 'postgres',
             user: 'postgres',
             password: 'senha',
