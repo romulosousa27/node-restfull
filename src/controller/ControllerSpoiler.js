@@ -1,5 +1,9 @@
 const Spoiler =  require("../model/spoiler");
 
+/** 
+ *  Middleware 
+ *  Retorna um dado Spoiler 
+ */
 exports.findSpoiler = (req, res, next) => {
     const id = req.params.id
 
@@ -14,6 +18,10 @@ exports.findSpoiler = (req, res, next) => {
     }).catch(error => next(error));
 };
 
+/**
+ *  Middleware 
+ *  Retorna todos os dados Spolier com paginação e limite
+*/
 exports.allSpoiler = (req, res, next) => {
     let limit = parseInt(req.query.limit || 0);
     let page = parseInt(req.query.page || 0);

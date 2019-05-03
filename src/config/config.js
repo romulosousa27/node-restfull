@@ -1,3 +1,6 @@
+/**
+ * Configuração de Conexão com o banco de dados
+ */
 module.exports = {
     
     development: {

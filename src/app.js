@@ -11,7 +11,6 @@ const port = 3000;
 app.set("port", port);
 
 /** middlewares */
-// 404
 app.use( (request, response, next) => {
     response.status(404).send();
 });

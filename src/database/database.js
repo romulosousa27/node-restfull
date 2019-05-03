@@ -4,6 +4,9 @@ const enviroment = process.env.NODE_ENV || ' development';
 
 const config = require("../config/config")[enviroment];
 
+/**
+ * Iniciando com o ORM, com os dados de conexao
+ */
 const sequilize = new Sequelize(
     config.database.name,
     config.database.user,
