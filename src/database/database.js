@@ -1,4 +1,4 @@
-const Sequelize = require('sequilize');
+const Sequelize = require("sequilize");
 
 const enviroment = process.env.NODE_ENV || ' development';
 
