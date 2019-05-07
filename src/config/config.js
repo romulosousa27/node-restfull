@@ -5,12 +5,12 @@ module.exports = {
     
     development: {
         database: {
-            host: '192.168.1.7',
+            host: '127.0.0.1',
             port: '5432',
-            name: 'NodeSpoilerAPI',
-            dialect: 'postgres',
-            user: 'postgres',
-            password: 'senha',
+            name: 'nodespoilerapi',
+            dialect: 'mysql',
+            user: 'root',
+            password: '',
         }
     },
     
@@ -20,4 +20,4 @@ module.exports = {
             port: 'process.env.DB_PORT',
         }
     }
-}
+};

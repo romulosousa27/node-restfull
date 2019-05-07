@@ -2,7 +2,7 @@ const Sequelize = require("sequelize");
 const sequelize = require('../database/database');
 
 /** Setting Model properties */
-const Spolier = sequelize.define("spoiler", {
+const Spoiler = sequelize.define("spoiler", {
     id:{
         allowNull: false, 
         autoIncrement: true,

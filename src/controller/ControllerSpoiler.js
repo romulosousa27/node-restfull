@@ -125,4 +125,4 @@ exports.updateSpoiler = (req, res, next) => {
             res.status(status.NOT_FOUND).send();
          }
      }).catch(error => next(error));
- }
+ };
